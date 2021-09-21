@@ -1,8 +1,5 @@
 # Salo test task. 
-## Flights search results page.
-
-### Requirements.
-TBD.
+## Search results page.
 
 ### Run.
 TBD.
