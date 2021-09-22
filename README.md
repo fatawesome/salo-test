@@ -1,9 +1,14 @@
 # Salo test task. 
 ## Search results page.
 
-### Run.
-TBD.
+### Development.
 
-### Test.
+#### Run:
+```$ yarn serve```
+
+#### Build:
+```$ yarn build```
+
+#### Test:
 TBD.
 
