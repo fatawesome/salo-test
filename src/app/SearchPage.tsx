@@ -8,22 +8,32 @@ interface SearchPageProps {
   className?: string
 }
 
+const TicketsWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`
+
+const StyledTicket = styled(Ticket)`
+  margin-bottom: 20px;
+`
+
 const SearchPage: React.FC<SearchPageProps> = ({ className }) => {
   return (
-    <main className={className}>
-      {tickets.map(ticket => {
-        return <Ticket ticket={ticket} key={ticket.carrier} /> // TODO: lol that's a bad key.
-      })}
-    </main>
+    <div className={className}>
+      <TicketsWrapper>
+        {tickets.map(ticket => {
+          return <StyledTicket ticket={ticket} key={ticket.carrier} />; // TODO: lol that's a bad key.
+        })}
+      </TicketsWrapper>
+    </div>
   )
 }
 
 const StyledSearchPage = styled(SearchPage)`
   background-color: #F3F7FA;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
 `
 
 export default StyledSearchPage;

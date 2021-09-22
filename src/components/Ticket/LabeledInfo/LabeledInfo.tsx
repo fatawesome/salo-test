@@ -6,9 +6,17 @@ type LabeledInfoProps = LabeledInformation & { className?: string };
 
 const Label = styled.span`
   color: ${props => props.theme.colors.textSecondary};
+  font-size: 12px;
+  line-height: 18px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-style: normal;
 `;
+
 const Information = styled.span`
   color: ${props => props.theme.colors.textPrimary};
+  font-size: 14px;
+  line-height: 21px;
 `;
 
 const LabeledInfo: React.FC<LabeledInfoProps> = (props) => {
@@ -22,7 +30,6 @@ const LabeledInfo: React.FC<LabeledInfoProps> = (props) => {
 
 // TODO: font and stuff;
 const StyledLabelInfo = styled(LabeledInfo)`
-  text-transform: capitalize;
   display: flex;
   flex-direction: column;
 `

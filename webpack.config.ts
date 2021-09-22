@@ -42,6 +42,10 @@ const config: Configuration = {
           },
         },
       },
+      {
+        test: /\.(woff|woff2)$/,
+        type: 'asset/inline'
+      }
     ],
   },
   output: {

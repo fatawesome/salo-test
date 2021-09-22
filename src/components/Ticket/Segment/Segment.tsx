@@ -22,7 +22,7 @@ const Segment: React.FC<SegmentProps> = ({ segment, className }) => {
       />
       <LabeledInfo
         label={`${segment.stops.length} пересадки`} // TODO: pluralization.
-        information={segment.stops.join(',')}
+        information={segment.stops.join(', ')}
       />
     </div>
   )
