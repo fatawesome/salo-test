@@ -9,6 +9,8 @@ interface TicketCardProps {
   className?: string;
 }
 
+const getCarrierImgURL = (iata: string) => `//pics.avs.io/99/36/${iata}.png`
+
 const Header = styled.div`
   width: 100%;
   display: flex;
@@ -34,6 +36,7 @@ const Ticket: React.FC<TicketCardProps> = ({ ticket, className }) => {
     <div className={className}>
       <Header>
         <Price>{ticket.price} Р</Price>
+        <img src={getCarrierImgURL(ticket.carrier)} alt={ticket.carrier} />
       </Header>
       {ticket.segments.map(segment => <StyledSegment segment={segment} key={segment.date} />)}
     </div>
