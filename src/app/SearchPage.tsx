@@ -48,7 +48,8 @@ const SearchPage: React.FC<SearchPageProps> = ({ className }) => {
       <Column>
         <Sorting />
         {tickets.map(ticket => {
-          return <Ticket ticket={ticket} key={ticket.carrier} />; // TODO: lol that's a bad key.
+          // TODO: lol that's a bad key. Probably we can assign an id to tickets after fetching from API.
+          return <Ticket ticket={ticket} key={ticket.carrier} />;
         })}
       </Column>
     </div>
