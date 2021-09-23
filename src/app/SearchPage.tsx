@@ -3,37 +3,41 @@ import styled from 'styled-components';
 
 import { tickets } from '../stubs';
 import { Ticket } from '../components/Ticket';
+import { Sorting } from '../components/Sorting';
 
 interface SearchPageProps {
   className?: string
 }
 
-const TicketsWrapper = styled.div`
-  width: 100%;
+const Column = styled.div`
+  max-width: 502px;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-`
-
-const StyledTicket = styled(Ticket)`
-  margin-bottom: 20px;
+  flex-direction: column;
+  & > * {
+    margin-bottom: 20px;
+  }
 `
 
 const SearchPage: React.FC<SearchPageProps> = ({ className }) => {
   return (
     <div className={className}>
-      <TicketsWrapper>
+      <Column>
+        <Sorting />
         {tickets.map(ticket => {
-          return <StyledTicket ticket={ticket} key={ticket.carrier} />; // TODO: lol that's a bad key.
+          return <Ticket ticket={ticket} key={ticket.carrier} />; // TODO: lol that's a bad key.
         })}
-      </TicketsWrapper>
+      </Column>
     </div>
   )
 }
 
 const StyledSearchPage = styled(SearchPage)`
   background-color: #F3F7FA;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `
 
 export default StyledSearchPage;
