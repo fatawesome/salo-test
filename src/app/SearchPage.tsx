@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { tickets } from '../stubs';
 import { Ticket } from '../components/Ticket';
 import { Sorting } from '../components/Sorting';
+import { Filters } from '../components/Filters';
 
 interface SearchPageProps {
   className?: string
@@ -23,6 +24,7 @@ const Column = styled.div`
 const SearchPage: React.FC<SearchPageProps> = ({ className }) => {
   return (
     <div className={className}>
+      <Filters />
       <Column>
         <Sorting />
         {tickets.map(ticket => {

@@ -16,7 +16,10 @@ const config: Configuration = {
     app: path.join(__dirname, 'src', 'index.tsx')
   },
   resolve: {
-    extensions: ['.ts', '.tsx', '.js']
+    extensions: ['.ts', '.tsx', '.js'],
+    alias: {
+      '@': path.resolve(__dirname, 'src'),
+    },
   },
   devtool: "inline-source-map",
   devServer: {
@@ -45,6 +48,10 @@ const config: Configuration = {
       {
         test: /\.(woff|woff2)$/,
         type: 'asset/inline'
+      },
+      {
+        test: /\.svg/,
+        type: 'asset/resource'
       }
     ],
   },

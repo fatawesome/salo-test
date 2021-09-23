@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import { Ticket as TicketType } from '../../models';
 import { Segment } from './Segment';
+import { ContentBlock } from '../common/ContentBlock';
 
 interface TicketCardProps {
   ticket: TicketType;
@@ -50,9 +51,6 @@ const StyledTicketCard = styled(Ticket)`
   max-width: 502px;
   min-height: 184px;
   padding: 20px;
-  background-color: ${props => props.theme.colors.background};
-  box-shadow: ${props => props.theme.boxShadow};
-  border-radius: 5px;
 `
 
-export default StyledTicketCard;
+export default ContentBlock(StyledTicketCard);
