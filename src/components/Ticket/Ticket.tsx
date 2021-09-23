@@ -44,7 +44,7 @@ const Ticket: React.FC<TicketCardProps> = ({ ticket, className }) => {
   )
 }
 
-const StyledTicketCard = styled(Ticket)`
+const StyledTicket = styled(Ticket)`
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -53,4 +53,4 @@ const StyledTicketCard = styled(Ticket)`
   padding: 20px;
 `
 
-export default ContentBlock(StyledTicketCard);
+export default ContentBlock(StyledTicket);

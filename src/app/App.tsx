@@ -27,6 +27,8 @@ const GlobalStyle = createGlobalStyle`
   }
 
   body {
+    height: 100%;
+    background-color: #F3F7FA;
     font-family: 'Open Sans', sans-serif;
     font-style: normal;
     font-weight: 600;

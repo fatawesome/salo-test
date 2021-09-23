@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 import { tickets } from '../stubs';
 import { Ticket } from '../components/Ticket';
 import { Sorting } from '../components/Sorting';
-import { Filters } from '../components/Filters';
+import { FilterOptions, Filters as FiltersModule } from '../components/Filters';
 
 interface SearchPageProps {
   className?: string
@@ -21,10 +21,30 @@ const Column = styled.div`
   }
 `
 
+const Filters = styled(FiltersModule)`
+  margin-right: 20px;
+`;
+
 const SearchPage: React.FC<SearchPageProps> = ({ className }) => {
+  const [filters, setFilters] = useState([
+    { active: false, text: 'Без пересадок', slug: 'zero' },
+    { active: false, text: '1 пересадка', slug: 'one' },
+    { active: false, text: '2 пересадки', slug: 'two' },
+    { active: false, text: '3 пересадки', slug: 'three' },
+    { active: false, text: '>3 пересадок', slug: 'more' },
+  ]);
+
+  const toggleFilter = (filter: FilterOptions): void => {
+    setFilters(filters.map(f => {
+      return f.slug === filter.slug
+        ? { ...filter, active: !filter.active }
+        : f
+    }))
+  }
+
   return (
     <div className={className}>
-      <Filters />
+      <Filters filters={filters} onChange={toggleFilter} />
       <Column>
         <Sorting />
         {tickets.map(ticket => {
@@ -36,10 +56,10 @@ const SearchPage: React.FC<SearchPageProps> = ({ className }) => {
 }
 
 const StyledSearchPage = styled(SearchPage)`
-  background-color: #F3F7FA;
+  margin-top: 100px;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
 `
 
 export default StyledSearchPage;
