@@ -9,6 +9,7 @@ $shownAmount.on(
   }
 );
 
+// TODO: handle { stop: true } response.
 guard({
   clock: showMore,
   filter: $fetchingRequired,
