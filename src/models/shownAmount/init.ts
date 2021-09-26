@@ -9,10 +9,8 @@ $shownAmount.on(
   }
 );
 
-$shownAmount.watch((state) => console.log('amount:', state))
-
 guard({
-  clock: $shownAmount,
+  clock: showMore,
   filter: $fetchingRequired,
   source: $searchId,
   target: fetchTicketsFx
