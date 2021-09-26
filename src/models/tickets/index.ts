@@ -2,6 +2,7 @@ import { combine, createEffect, createEvent, createStore } from 'effector';
 import { SearchId, Ticket } from '../../types';
 import { $filtersFn } from '../filter';
 
+export const $searchId = createStore<SearchId>('');
 export const $tickets = createStore<Ticket[]>([]);
 
 export const initSearch = createEffect<void, SearchId, Error>();
@@ -25,9 +26,3 @@ export const $ticketGetStatus = combine({
   error: $fetchError,
   tickets: $filteredTickets
 });
-
-
-export const AMOUNT_TO_SHOW = 5;
-export const $shownAmount = createStore<number>(0);
-export const showMore = createEvent<number>();
-
