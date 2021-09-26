@@ -28,7 +28,6 @@ const LabeledInfo: React.FC<LabeledInfoProps> = (props) => {
   )
 }
 
-// TODO: font and stuff;
 const StyledLabelInfo = styled(LabeledInfo)`
   display: flex;
   flex-direction: column;

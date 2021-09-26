@@ -55,7 +55,6 @@ const Segment: React.FC<SegmentProps> = ({ segment, className }) => {
   )
 }
 
-// TODO: make correct layout (try grids u stupid).
 const StyledSegment = styled(Segment)`
   display: grid;
   grid-template-columns: repeat(3, 1fr);

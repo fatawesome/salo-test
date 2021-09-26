@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import { Ticket } from '../components/Ticket';
 import { Sorting } from '../components/Sorting';
-import { FilterOptions, Filters as FiltersModule } from '../components/Filters';
+import { Filters as FiltersModule } from '../components/Filters';
 import { useStore } from 'effector-react';
 import { $ticketGetStatus, initSearch } from '../models/tickets';
 import { $filterStates, toggleFilter } from '../models/filter';
@@ -44,7 +44,7 @@ const SearchPage: React.FC<SearchPageProps> = ({ className }) => {
         { error
           ? <div>error</div>
           : tickets.slice(0, 5).map(ticket => {
-              return <Ticket ticket={ticket} key={ticket.carrier} />;
+              return <Ticket ticket={ticket} key={ticket.id} />;
             })
         }
 

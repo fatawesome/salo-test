@@ -1,4 +1,5 @@
 import { SearchId, Ticket } from '../types';
+import { nanoid } from 'nanoid';
 
 const BASE_URL = 'https://front-test.beta.aviasales.ru';
 
@@ -14,7 +15,8 @@ export async function getSearchId(): Promise<SearchId> {
 export async function getTickets(searchId: string): Promise<Ticket[]> {
   const response = await fetch(`${BASE_URL}/tickets?searchId=${searchId}`, { method: 'GET' });
   if (response.ok) {
-    return (await response.json()).tickets;
+    const tickets: Ticket[] = (await response.json()).tickets;
+    return tickets.map(ticket => ({ ...ticket, id: nanoid() }));
   } else {
     throw new Error("Error fetching tickets.");
   }

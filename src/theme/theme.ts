@@ -1,6 +1,5 @@
 import { DefaultTheme } from 'styled-components';
 
-// TODO: font and stuff;
 const aviasalesTheme: DefaultTheme = {
   boxShadow: '0px 2px 8px rgba(0, 0, 0, 0.1)',
   colors: {
