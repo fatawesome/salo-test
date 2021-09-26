@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 
-import { tickets } from '../stubs';
 import { Ticket } from '../components/Ticket';
 import { Sorting } from '../components/Sorting';
 import { FilterOptions, Filters as FiltersModule } from '../components/Filters';
+import { useStore } from 'effector-react';
+import { $ticketGetStatus, initSearch } from '../models/tickets';
+import { $filterStates, toggleFilter } from '../models/filter';
 
 interface SearchPageProps {
   className?: string
@@ -26,31 +28,26 @@ const Filters = styled(FiltersModule)`
 `;
 
 const SearchPage: React.FC<SearchPageProps> = ({ className }) => {
-  const [filters, setFilters] = useState([
-    { active: false, text: 'Без пересадок', slug: 'zero' },
-    { active: false, text: '1 пересадка', slug: 'one' },
-    { active: false, text: '2 пересадки', slug: 'two' },
-    { active: false, text: '3 пересадки', slug: 'three' },
-    { active: false, text: '>3 пересадок', slug: 'more' },
-  ]);
+  const { loading, error, tickets } = useStore($ticketGetStatus);
+  const filters = useStore($filterStates);
 
-  const toggleFilter = (filter: FilterOptions): void => {
-    setFilters(filters.map(f => {
-      return f.slug === filter.slug
-        ? { ...filter, active: !filter.active }
-        : f
-    }))
-  }
+  useEffect(() => {
+    initSearch();
+  }, [])
 
   return (
     <div className={className}>
       <Filters filters={filters} onChange={toggleFilter} />
       <Column>
         <Sorting />
-        {tickets.map(ticket => {
-          // TODO: lol that's a bad key. Probably we can assign an id to tickets after fetching from API.
-          return <Ticket ticket={ticket} key={ticket.carrier} />;
-        })}
+        { loading && <div>loading</div> }
+        { error
+          ? <div>error</div>
+          : tickets.slice(0, 5).map(ticket => {
+              return <Ticket ticket={ticket} key={ticket.carrier} />;
+            })
+        }
+
       </Column>
     </div>
   )

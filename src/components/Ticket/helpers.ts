@@ -1,4 +1,4 @@
-import { Segment } from '../../models';
+import { Segment } from '../../types';
 
 export function getDepartureTime(segment: Segment): string {
   const date = new Date(segment.date);

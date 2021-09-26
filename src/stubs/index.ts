@@ -1,4 +1,4 @@
-import { Ticket } from '../models';
+import { Ticket } from '../types';
 
 export const tickets: Ticket[] = [
   {

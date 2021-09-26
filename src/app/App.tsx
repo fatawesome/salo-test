@@ -4,6 +4,8 @@ import { createGlobalStyle, ThemeProvider } from 'styled-components';
 import { aviasalesTheme } from '../theme/theme';
 import SearchPage from './SearchPage';
 
+import '../models/init';
+
 import openSansRegularWoff2 from '../assets/fonts/open-sans-v23-latin_cyrillic-regular.woff2';
 import openSans600Woff2 from '../assets/fonts/open-sans-v23-latin_cyrillic-600.woff2';
 

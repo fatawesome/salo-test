@@ -2,16 +2,16 @@ import React from 'react';
 import styled from 'styled-components';
 import { ContentBlock } from '../common/ContentBlock';
 import { Checkbox } from './Checkbox';
+import { FilterType } from '../../types';
 
 export interface FilterOptions {
-  slug: string;
-  active: boolean;
-  text: string;
+  type: string;
+  selected: boolean;
 }
 
 interface FiltersProps {
   filters: FilterOptions[];
-  onChange: (filter: FilterOptions) => void;
+  onChange: (type: FilterType) => void;
   className: string;
 }
 
@@ -19,15 +19,15 @@ const Filters: React.FC<FiltersProps> = (props) => {
 
   const filters = props.filters.map(filter => (
     <Checkbox
-      key={filter.slug}
-      id={filter.slug}
-      checked={filter.active}
+      key={filter.type}
+      id={filter.type}
+      checked={filter.selected}
       onChange={() => {
-        console.log(`Filter "${filter.text}" clicked`);
-        props.onChange(filter);
+        console.log(`Filter "${filter.type}" clicked`);
+        props.onChange(filter.type);
       }}
     >
-      {filter.text}
+      {filter.type}
     </Checkbox>
   ))
 

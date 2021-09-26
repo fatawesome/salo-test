@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { Ticket as TicketType } from '../../models';
+import { Ticket as TicketType } from '../../types';
 import { Segment } from './Segment';
 import { ContentBlock } from '../common/ContentBlock';
 

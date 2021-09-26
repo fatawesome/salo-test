@@ -1,5 +1,5 @@
 import React from 'react';
-import { Segment as SegmentType } from '../../../models';
+import { Segment as SegmentType } from '../../../types';
 import styled from 'styled-components';
 import { LabeledInfo } from '../LabeledInfo';
 import { getArrivalTime, getDepartureTime, getRouteTime } from '../helpers';
@@ -10,7 +10,7 @@ interface SegmentProps {
 }
 
 /**
- Нет пересадок
+ Без пересадок
  1 пересадка   1     group A
  2 пересадки   2-4   group B
  5 пересадок   5-10  group C
@@ -18,7 +18,7 @@ interface SegmentProps {
 const getPluralizedStopsText = (stops: string[]) => {
   // imperative stuff
   if (stops.length === 0) {
-    return 'Нет пересадок';
+    return 'Без пересадок';
   }
 
   const numOfStops = stops.length;
