@@ -1,4 +1,4 @@
-import { $fetchingRequired, $shownAmount, showMore } from './';
+import { $canShowMore, $fetchingRequired, $shownAmount, showMore } from './';
 import { guard } from 'effector';
 import { $searchId, fetchTicketsFx } from '../tickets';
 
@@ -9,7 +9,6 @@ $shownAmount.on(
   }
 );
 
-// TODO: handle { stop: true } response.
 guard({
   clock: showMore,
   filter: $fetchingRequired,

@@ -8,7 +8,7 @@ import { useStore } from 'effector-react';
 import { $ticketGetStatus, initSearch } from '../models/tickets';
 import { $filterStates, toggleFilter } from '../models/filter';
 import { Button as ButtonComponent } from '../components/common/Button';
-import { $shownAmount, AMOUNT_TO_SHOW, showMore } from '../models/shownAmount';
+import { $canShowMore, $shownAmount, AMOUNT_TO_SHOW, showMore } from '../models/showMore';
 
 interface SearchPageProps {
   className?: string
@@ -37,6 +37,7 @@ const SearchPage: React.FC<SearchPageProps> = ({ className }) => {
   const { loading, error, tickets } = useStore($ticketGetStatus);
   const filters = useStore($filterStates);
   const shownAmount = useStore($shownAmount);
+  const canShowMore = useStore($canShowMore);
 
   useEffect(() => {
     initSearch();
@@ -59,9 +60,11 @@ const SearchPage: React.FC<SearchPageProps> = ({ className }) => {
               return <Ticket ticket={ticket} key={ticket.id} />;
             })
         }
-        <Button onClick={showMoreClickHandler}>
-          Показать еще {AMOUNT_TO_SHOW} билетов!
-        </Button>
+        {canShowMore &&
+          <Button onClick={showMoreClickHandler}>
+            Показать еще {AMOUNT_TO_SHOW} билетов!
+          </Button>
+        }
       </Column>
     </div>
   )

@@ -1,6 +1,6 @@
 import {
   $tickets, initSearch, fetchTicketsFx,
-  $fetchIdError, $fetchTicketsError, $searchId
+  $fetchIdError, $fetchTicketsError, $searchId, $canFetchTickets
 } from './index';
 import { Ticket } from '../../types';
 import { getSearchId, getTickets } from '../../api/search';
@@ -17,10 +17,14 @@ $searchId.on(
 const updateTicketsStore = (state: Ticket[], data: Ticket[]) => {
   return state.concat(data);
 }
+
 $tickets.on(
   fetchTicketsFx.done,
-  (tickets, {result}) => updateTicketsStore(tickets, result)
+  (tickets, {result}) => updateTicketsStore(tickets, result.tickets)
 );
+
+// TODO: было бы неплохо запретить делать запросы, если нельзя, на уровне этого модуля.
+$canFetchTickets.on(fetchTicketsFx.done, (_, {result}) => !result.stop);
 
 forward({
   from: $searchId,

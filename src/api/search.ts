@@ -12,11 +12,19 @@ export async function getSearchId(): Promise<SearchId> {
   }
 }
 
-export async function getTickets(searchId: string): Promise<Ticket[]> {
+export interface TicketsResponse {
+  tickets: Ticket[];
+  stop: boolean;
+}
+
+export async function getTickets(searchId: string): Promise<TicketsResponse> {
   const response = await fetch(`${BASE_URL}/tickets?searchId=${searchId}`, { method: 'GET' });
   if (response.ok) {
-    const tickets: Ticket[] = (await response.json()).tickets;
-    return tickets.map(ticket => ({ ...ticket, id: nanoid() }));
+    const res: TicketsResponse = await response.json();
+    return {
+      stop: res.stop,
+      tickets: res.tickets.map(ticket => ({ ...ticket, id: nanoid() }))
+    };
   } else {
     throw new Error("Error fetching tickets.");
   }
