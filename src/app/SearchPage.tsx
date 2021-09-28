@@ -1,6 +1,6 @@
 import React, { MouseEventHandler, useEffect } from 'react';
 import styled from 'styled-components';
-import { useStore } from 'effector-react';
+import { useEvent, useStore } from 'effector-react';
 
 import { Sorting } from '../components/Sorting';
 import { Filters as FiltersComponent } from '../components/Filters';
@@ -39,6 +39,7 @@ const SearchPage: React.FC<SearchPageProps> = ({ className }) => {
   const filters = useStore($filterStates);
   const shownAmount = useStore($shownAmount);
   const canShowMore = useStore($canShowMore);
+  const showMoreHandler = useEvent(showMore);
 
   useEffect(() => {
     initSearch();
@@ -46,7 +47,7 @@ const SearchPage: React.FC<SearchPageProps> = ({ className }) => {
 
   const showMoreClickHandler: MouseEventHandler = (e) => {
     e.preventDefault();
-    showMore(AMOUNT_TO_SHOW);
+    showMoreHandler(AMOUNT_TO_SHOW);
   };
 
   return (

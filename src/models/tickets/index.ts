@@ -2,6 +2,7 @@ import { combine, createEffect, createStore } from 'effector';
 import { SearchId, Ticket } from '../../types';
 import { $filtersFn } from '../filter';
 import { TicketsResponse } from '../../api/search';
+import { $sortFn } from '../sorting';
 
 export const $searchId = createStore<SearchId>('');
 export const $tickets = createStore<Ticket[]>([]);
@@ -17,14 +18,16 @@ export const $fetchError = combine(
   (idError, ticketsError) => { return idError || ticketsError; }
 );
 
-export const $filteredTickets = combine(
+// First filter, then sort, cz filter - O(n), and sort - O(nlogn).
+export const $filteredAndSortedTickets = combine(
   $tickets,
   $filtersFn,
-  (list, fn) => list.filter(fn)
+  $sortFn,
+  (list, filterFn, sortFn) => list.filter(filterFn).sort(sortFn)
 );
 
 export const $ticketGetStatus = combine({
   loading: initSearch.pending || fetchTicketsFx.pending,
   error: $fetchError,
-  tickets: $filteredTickets
+  tickets: $filteredAndSortedTickets
 });
