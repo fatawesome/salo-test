@@ -8,7 +8,7 @@ import { $ticketGetStatus, initSearch } from '../models/tickets';
 import { $filterStates, toggleFilter } from '../models/filter';
 import { Button as ButtonComponent } from '../components/common/Button';
 import { $canShowMore, $shownAmount, AMOUNT_TO_SHOW, showMore } from '../models/showMore';
-import TicketsList from '../components/TicketsList';
+import { TicketsList } from '../components/TicketsList';
 
 interface SearchPageProps {
   className?: string
@@ -53,11 +53,9 @@ const SearchPage: React.FC<SearchPageProps> = ({ className }) => {
       <Filters filters={filters} onChange={toggleFilter} />
       <Column>
         <Sorting />
-        { loading && <div>loading</div> }
-        { error // TODO: show error after already shown tickets.
-          ? <div>error</div>
-          : <TicketsList tickets={tickets.slice(0, shownAmount)} />
-        }
+        {tickets && <TicketsList tickets={tickets.slice(0, shownAmount)} />}
+        {loading && <div>loading</div>}
+        {error && <div>error</div>}
         {canShowMore &&
           <Button onClick={showMoreClickHandler}>
             Показать еще {AMOUNT_TO_SHOW} билетов!

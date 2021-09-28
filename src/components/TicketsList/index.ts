@@ -1,1 +1,1 @@
-export { default as TicketList } from './TicketsList';
+export { default as TicketsList } from './TicketsList';

@@ -6,6 +6,7 @@ interface TicketsListProps {
   tickets: TicketT[];
 }
 
+// TODO: сюда бы скелетон...
 const TicketsList: React.FunctionComponent<TicketsListProps> = ({ tickets }) => {
   const ticketsBlocks = tickets.map(ticket => <Ticket ticket={ticket} key={ticket.id} />)
   return (
