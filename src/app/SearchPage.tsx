@@ -1,7 +1,6 @@
 import React, { MouseEventHandler, useEffect } from 'react';
 import styled from 'styled-components';
 
-import { Ticket } from '../components/Ticket';
 import { Sorting } from '../components/Sorting';
 import { Filters as FiltersComponent } from '../components/Filters';
 import { useStore } from 'effector-react';
@@ -9,7 +8,7 @@ import { $ticketGetStatus, initSearch } from '../models/tickets';
 import { $filterStates, toggleFilter } from '../models/filter';
 import { Button as ButtonComponent } from '../components/common/Button';
 import { $canShowMore, $shownAmount, AMOUNT_TO_SHOW, showMore } from '../models/showMore';
-import TicketsList from '../components/TicketsList/TicketsList';
+import TicketsList from '../components/TicketsList';
 
 interface SearchPageProps {
   className?: string
