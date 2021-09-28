@@ -9,6 +9,7 @@ import { $ticketGetStatus, initSearch } from '../models/tickets';
 import { $filterStates, toggleFilter } from '../models/filter';
 import { Button as ButtonComponent } from '../components/common/Button';
 import { $canShowMore, $shownAmount, AMOUNT_TO_SHOW, showMore } from '../models/showMore';
+import TicketsList from '../components/TicketsList/TicketsList';
 
 interface SearchPageProps {
   className?: string
@@ -56,9 +57,7 @@ const SearchPage: React.FC<SearchPageProps> = ({ className }) => {
         { loading && <div>loading</div> }
         { error // TODO: show error after already shown tickets.
           ? <div>error</div>
-          : tickets.slice(0, shownAmount).map(ticket => {
-              return <Ticket ticket={ticket} key={ticket.id} />;
-            })
+          : <TicketsList tickets={tickets.slice(0, shownAmount)} />
         }
         {canShowMore &&
           <Button onClick={showMoreClickHandler}>
