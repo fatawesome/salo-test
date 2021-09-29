@@ -11,18 +11,16 @@ import { $ticketGetStatus, initSearch } from '../models/tickets';
 import { $filterStates, toggleFilter } from '../models/filter';
 import { $canShowMore, $shownAmount, AMOUNT_TO_SHOW, showMore } from '../models/showMore';
 import { $sortStates, applySort } from '../models/sorting';
+import { TicketsError } from '../components/TicketsError';
+import { ColumnWrapper } from '../components/common/ColumnWrapper';
+import { TicketsLoading } from '../components/TicketsLoading';
 
 interface SearchPageProps {
   className?: string
 }
 
-const Column = styled.div`
-  width: 100%;
+const Column = styled(ColumnWrapper)`
   max-width: 502px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
 `;
 
 const Filters = styled(FiltersComponent)`
@@ -65,8 +63,8 @@ const SearchPage: React.FC<SearchPageProps> = ({ className }) => {
       <Column>
         <Sorting sorts={sorts} onChange={applySortHandler} />
         {tickets && <TicketsList tickets={tickets.slice(0, shownAmount)} />}
-        {loading && <div>loading</div>}
-        {error && <div>error</div>}
+        {loading && <TicketsLoading />}
+        {error && <TicketsError tryAgain={initSearch} />}
         {canShowMore &&
           <Button onClick={showMoreClickHandler}>
             Показать еще {AMOUNT_TO_SHOW} билетов!
