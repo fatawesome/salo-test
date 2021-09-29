@@ -52,6 +52,10 @@ const config: Configuration = {
         },
       },
       {
+        test: /\.(css)$/,
+        use: 'css-loader'
+      },
+      {
         test: /\.(woff|woff2)$/,
         type: 'asset/inline'
       },
