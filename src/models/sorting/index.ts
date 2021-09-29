@@ -1,17 +1,12 @@
 import { createEvent, createStore } from 'effector';
-import { Sort, SortType, Ticket } from '../../types';
+import { Sort, SortType } from '../../types';
+import { compareOnDuration, compareOnOptimality, compareOnPrice } from './helpers';
 
-// TODO: лол это не будет работать
-function compareOnDuration(a: Ticket, b: Ticket) {
-  const getTicketDuration = (t: Ticket) =>
-    t.segments.reduce((acc, s) => acc + s.duration, 0);
-  return getTicketDuration(a) - getTicketDuration(b);
-}
-
+// TODO: дублируется сущность, надо бы сделать элегантней.
 const priceIncreasing: Sort = {
   type: 'Самый дешевый',
   selected: true,
-  comparator: (a, b) => a.price - b.price
+  comparator: compareOnPrice
 };
 const priceDecreasing: Sort = {
   type: 'Самый быстрый',
@@ -21,7 +16,7 @@ const priceDecreasing: Sort = {
 const optimal: Sort = {
   type: 'Оптимальный',
   selected: false,
-  comparator: (a, b) => 0
+  comparator: compareOnOptimality
 };
 const defaultSorts = [priceIncreasing, priceDecreasing, optimal];
 
