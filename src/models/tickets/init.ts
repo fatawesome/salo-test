@@ -23,7 +23,7 @@ $tickets.on(
   (tickets, {result}) => updateTicketsStore(tickets, result.tickets)
 );
 
-// TODO: было бы неплохо запретить делать запросы, если нельзя, на уровне этого модуля.
+// TODO: было бы неплохо уметь запрещать делать запросы на уровне этого модуля.
 $canFetchTickets.on(fetchTicketsFx.done, (_, {result}) => !result.stop);
 
 forward({
