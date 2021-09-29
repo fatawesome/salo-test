@@ -22,6 +22,7 @@ const SortTab: React.FC<SortTabProps> =
 }
 
 const StyledSortTab = styled(SortTab)`
+  display: block;
   padding: 14px;
   text-transform: uppercase;
   letter-spacing: 0.5px;

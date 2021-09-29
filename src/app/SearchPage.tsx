@@ -4,7 +4,7 @@ import { useEvent, useStore } from 'effector-react';
 
 import { Sorting } from '../components/Sorting';
 import { Filters as FiltersComponent } from '../components/Filters';
-import { TicketsList } from '../components/TicketsList';
+import { TicketsList as TicketsListComponent } from '../components/TicketsList';
 import { Button as ButtonComponent } from '../components/common/Button';
 
 import { $ticketGetStatus, initSearch } from '../models/tickets';
@@ -17,18 +17,21 @@ interface SearchPageProps {
 }
 
 const Column = styled.div`
+  width: 100%;
   max-width: 502px;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  & > * {
-    margin-bottom: 20px;
-  }
-`
+`;
 
 const Filters = styled(FiltersComponent)`
+  // TODO: nit - много спейсингов с таким значением, было бы неплохо в тему вытащить.
   margin-right: 20px;
+`;
+
+const TicketsList = styled(TicketsListComponent)`
+  margin-top: 20px;
 `;
 
 const Button = styled(ButtonComponent)`
@@ -38,7 +41,7 @@ const Button = styled(ButtonComponent)`
 const SearchPage: React.FC<SearchPageProps> = ({ className }) => {
   const { loading, error, tickets } = useStore($ticketGetStatus);
   const filters = useStore($filterStates);
-  const sortings = useStore($sortStates);
+  const sorts = useStore($sortStates);
   const shownAmount = useStore($shownAmount);
   const canShowMore = useStore($canShowMore);
 
@@ -59,7 +62,7 @@ const SearchPage: React.FC<SearchPageProps> = ({ className }) => {
     <div className={className}>
       <Filters filters={filters} onChange={toggleFilterHandler} />
       <Column>
-        <Sorting sorts={sortings} onChange={applySortHandler} />
+        <Sorting sorts={sorts} onChange={applySortHandler} />
         {tickets && <TicketsList tickets={tickets.slice(0, shownAmount)} />}
         {loading && <div>loading</div>}
         {error && <div>error</div>}

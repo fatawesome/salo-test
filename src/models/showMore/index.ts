@@ -1,7 +1,7 @@
 import { combine, createEvent, createStore } from 'effector';
 import { $canFetchTickets, $tickets } from '../tickets';
 
-export const AMOUNT_TO_SHOW = 5;
+export const AMOUNT_TO_SHOW = 200;
 
 export const $shownAmount = createStore<number>(AMOUNT_TO_SHOW);
 export const showMore = createEvent<number>();

@@ -6,6 +6,10 @@ import { Sort, SortType } from '../../types';
 
 const TabsContainer = styled.div`
   width: 100%;
+  display: flex;
+  & > * {
+    flex-grow: 1;
+  }
   & > *:first-child {
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
@@ -18,10 +22,11 @@ const TabsContainer = styled.div`
 
 interface SortingProps {
   sorts: Sort[];
-  onChange: (type: SortType) => void
+  onChange: (type: SortType) => void;
+  className?: string
 }
 
-const Sorting: React.FC<SortingProps> = ({ sorts, onChange }) => {
+const Sorting: React.FC<SortingProps> = ({ sorts, onChange, className }) => {
   const tabElements = sorts.map(sort => (
     <SortTab
       onClick={() => onChange(sort.type)}
@@ -33,7 +38,7 @@ const Sorting: React.FC<SortingProps> = ({ sorts, onChange }) => {
   ))
 
   return (
-    <TabsContainer>
+    <TabsContainer className={className}>
       {tabElements}
     </TabsContainer>
   )

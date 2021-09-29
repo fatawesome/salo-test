@@ -1,19 +1,45 @@
 import React from 'react';
 import { Ticket as TicketT } from '../../types';
-import { Ticket } from '../Ticket';
+import { Ticket as TicketComponent } from '../Ticket';
+import styled from 'styled-components';
+import { AutoSizer, ListRowProps, List } from 'react-virtualized';
 
 interface TicketsListProps {
   tickets: TicketT[];
+  className?: string
 }
 
-// TODO: сюда бы скелетон...
-const TicketsList: React.FunctionComponent<TicketsListProps> = ({ tickets }) => {
-  const ticketsBlocks = tickets.map(ticket => <Ticket ticket={ticket} key={ticket.id} />)
+const Ticket = styled(TicketComponent)`
+  :not(:last-child) {
+    margin-bottom: 20px;
+  }
+`;
+
+const TicketsList: React.FunctionComponent<TicketsListProps> = ({ tickets, className }) => {
+  function rowRenderer({key, index, style}: ListRowProps) {
+    return <Ticket ticket={tickets[index]} key={key} style={style} />
+  }
+
   return (
-    <>
-      {ticketsBlocks}
-    </>
+    <div className={className}>
+      <AutoSizer>
+        {({height, width}) => (
+          <List
+            height={height}
+            rowCount={tickets.length}
+            rowHeight={204}
+            rowRenderer={rowRenderer}
+            width={width}
+          />
+        )}
+      </AutoSizer>
+    </div>
   );
 };
 
-export default TicketsList
+const StyledTicketsList = styled(TicketsList)`
+  height: ${props => props.tickets.length * 204}px;
+  width: 100%;
+`
+
+export default StyledTicketsList;
