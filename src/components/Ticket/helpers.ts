@@ -10,9 +10,18 @@ export function getArrivalTime(segment: Segment): string {
   return dateToTimeString(date);
 }
 
-export function getRouteTime(segment: Segment): string {
+export function getRouteTime(segment: Segment): RouteTime {
   const hours = Math.floor(segment.duration / 60);
   const minutes = segment.duration - hours * 60;
+  return { hours, minutes };
+}
+
+interface RouteTime {
+  hours: number,
+  minutes: number
+}
+
+export function routeTimeToString({ hours, minutes }: RouteTime): string {
   return `${hours}ч ${minutes}м`;
 }
 

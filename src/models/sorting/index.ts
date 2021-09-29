@@ -1,21 +1,31 @@
 import { createEvent, createStore } from 'effector';
-import { Ticket } from '../../types';
+import { Sort, SortType, Ticket } from '../../types';
 
-export type SortingType = 'price_dec' | 'price_inc' | 'optimal';
+// TODO: лол это не будет работать
+function compareOnDuration(a: Ticket, b: Ticket) {
+  const getTicketDuration = (t: Ticket) =>
+    t.segments.reduce((acc, s) => acc + s.duration, 0);
+  return getTicketDuration(a) - getTicketDuration(b);
+}
 
-export const $sort = createStore<SortingType>('price_dec');
+const priceIncreasing: Sort = {
+  type: 'Самый дешевый',
+  selected: true,
+  comparator: (a, b) => a.price - b.price
+};
+const priceDecreasing: Sort = {
+  type: 'Самый быстрый',
+  selected: false,
+  comparator: compareOnDuration
+};
+const optimal: Sort = {
+  type: 'Оптимальный',
+  selected: false,
+  comparator: (a, b) => 0
+};
+const defaultSorts = [priceIncreasing, priceDecreasing, optimal];
 
-// TODO: можно запариться насчет DRY, но имхо это будет premature.
-export const $sortFn = $sort.map(sort => {
-  switch (sort) {
-    case 'price_dec':
-      return (a: Ticket, b: Ticket) => a.price - b.price;
-    case 'price_inc':
-      return (a: Ticket, b: Ticket) => b.price - a.price;
-    case 'optimal':
-      // TODO: придумать формулу, пока пусть будет identity для работоспособности
-      return (a: Ticket, b: Ticket) => 0;
-  }
-});
-
-export const applySort = createEvent<SortingType>();
+export const $sort = createStore<Sort>(priceIncreasing);
+export const $sortFn = $sort.map(sort => sort.comparator);
+export const $sortStates = createStore<Sort[]>(defaultSorts)
+export const applySort = createEvent<SortType>();

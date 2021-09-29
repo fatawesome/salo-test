@@ -24,3 +24,11 @@ export interface Filter {
   selected: boolean;
   fn: FilterFn;
 }
+
+export type SortType = 'Самый дешевый' | 'Самый быстрый' | 'Оптимальный';
+export type SortFn = (a: Ticket, b: Ticket) => number;
+export interface Sort {
+  type: SortType;
+  selected: boolean;
+  comparator: SortFn;
+}

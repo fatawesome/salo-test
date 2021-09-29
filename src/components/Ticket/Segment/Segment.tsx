@@ -2,7 +2,7 @@ import React from 'react';
 import { Segment as SegmentType } from '../../../types';
 import styled from 'styled-components';
 import { LabeledInfo } from '../LabeledInfo';
-import { getArrivalTime, getDepartureTime, getRouteTime } from '../helpers';
+import { getArrivalTime, getDepartureTime, getRouteTime, routeTimeToString } from '../helpers';
 
 interface SegmentProps {
   segment: SegmentType;
@@ -45,7 +45,7 @@ const Segment: React.FC<SegmentProps> = ({ segment, className }) => {
       />
       <LabeledInfo
         label={'В пути'}
-        information={getRouteTime(segment)}
+        information={routeTimeToString(getRouteTime(segment))}
       />
       <LabeledInfo
         label={getPluralizedStopsText(segment.stops)}

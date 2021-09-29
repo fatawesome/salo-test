@@ -25,7 +25,7 @@ export const $filterStates = createStore<Filter[]>([
   { type: '1 пересадка', selected: false,
     fn: hasAmountOfStops(1)
   },
-  { type: '2 пересадка', selected: false,
+  { type: '2 пересадки', selected: false,
     fn: hasAmountOfStops(2)
   },
   { type: '3 пересадки', selected: false,

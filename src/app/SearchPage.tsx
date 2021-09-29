@@ -10,6 +10,7 @@ import { Button as ButtonComponent } from '../components/common/Button';
 import { $ticketGetStatus, initSearch } from '../models/tickets';
 import { $filterStates, toggleFilter } from '../models/filter';
 import { $canShowMore, $shownAmount, AMOUNT_TO_SHOW, showMore } from '../models/showMore';
+import { $sortStates, applySort } from '../models/sorting';
 
 interface SearchPageProps {
   className?: string
@@ -37,9 +38,13 @@ const Button = styled(ButtonComponent)`
 const SearchPage: React.FC<SearchPageProps> = ({ className }) => {
   const { loading, error, tickets } = useStore($ticketGetStatus);
   const filters = useStore($filterStates);
+  const sortings = useStore($sortStates);
   const shownAmount = useStore($shownAmount);
   const canShowMore = useStore($canShowMore);
+
   const showMoreHandler = useEvent(showMore);
+  const toggleFilterHandler = useEvent(toggleFilter);
+  const applySortHandler = useEvent(applySort);
 
   useEffect(() => {
     initSearch();
@@ -52,9 +57,9 @@ const SearchPage: React.FC<SearchPageProps> = ({ className }) => {
 
   return (
     <div className={className}>
-      <Filters filters={filters} onChange={toggleFilter} />
+      <Filters filters={filters} onChange={toggleFilterHandler} />
       <Column>
-        <Sorting />
+        <Sorting sorts={sortings} onChange={applySortHandler} />
         {tickets && <TicketsList tickets={tickets.slice(0, shownAmount)} />}
         {loading && <div>loading</div>}
         {error && <div>error</div>}
