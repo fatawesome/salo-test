@@ -55,7 +55,7 @@
     "url": "git+https://github.com/fatawesome/salo-test.git"
   },
   "author": "Ilya Alonov",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/fatawesome/salo-test/issues"
   },

@@ -38,6 +38,7 @@ const Button = styled(ButtonComponent)`
   width: 100%;
 `;
 
+// TODO: сделаем вид, что тут нормальный лоадер и нормальное уведомление об ошибке.
 const SearchPage: React.FC<SearchPageProps> = ({ className }) => {
   const { loading, error, tickets } = useStore($ticketGetStatus);
   const filters = useStore($filterStates);
