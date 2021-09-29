@@ -1,16 +1,16 @@
 import {
-  $tickets, initSearch, fetchTicketsFx,
+  $tickets, initSearchFx, fetchTicketsFx,
   $fetchIdError, $fetchTicketsError, $searchId, $canFetchTickets
 } from './index';
 import { Ticket } from '../../types';
 import { getSearchId, getTickets } from '../../api/search';
 import { forward } from 'effector';
 
-initSearch.use(getSearchId);
+initSearchFx.use(getSearchId);
 fetchTicketsFx.use(getTickets);
 
 $searchId.on(
-  initSearch.done,
+  initSearchFx.done,
   (_, {result}) => result
 );
 
@@ -32,8 +32,8 @@ forward({
 });
 
 $fetchIdError
-  .on(initSearch.fail, (_, { error }) => error)
-  .reset(initSearch.done);
+  .on(initSearchFx.fail, (_, { error }) => error)
+  .reset(initSearchFx.done);
 
 $fetchTicketsError
   .on(fetchTicketsFx.fail, (_, { error }) => error)

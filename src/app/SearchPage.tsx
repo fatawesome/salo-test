@@ -7,7 +7,7 @@ import { Filters as FiltersComponent } from '../components/Filters';
 import { TicketsList as TicketsListComponent } from '../components/TicketsList';
 import { Button as ButtonComponent } from '../components/common/Button';
 
-import { $ticketGetStatus, initSearch } from '../models/tickets';
+import { $ticketGetStatus, initSearchFx } from '../models/tickets';
 import { $filterStates, toggleFilter } from '../models/filter';
 import { $canShowMore, $shownAmount, AMOUNT_TO_SHOW, showMore } from '../models/showMore';
 import { $sortStates, applySort } from '../models/sorting';
@@ -49,7 +49,7 @@ const SearchPage: React.FC<SearchPageProps> = ({ className }) => {
   const applySortHandler = useEvent(applySort);
 
   useEffect(() => {
-    initSearch();
+    initSearchFx();
   }, []);
 
   const showMoreClickHandler: MouseEventHandler = (e) => {
@@ -57,6 +57,7 @@ const SearchPage: React.FC<SearchPageProps> = ({ className }) => {
     showMoreHandler(AMOUNT_TO_SHOW);
   };
 
+  // TODO: условие для показа/скрытия кнопки "показать еще" можно написать элегантнее на уровне эффектора
   return (
     <div className={className}>
       <Filters filters={filters} onChange={toggleFilterHandler} />
@@ -64,8 +65,9 @@ const SearchPage: React.FC<SearchPageProps> = ({ className }) => {
         <Sorting sorts={sorts} onChange={applySortHandler} />
         {tickets && <TicketsList tickets={tickets.slice(0, shownAmount)} />}
         {loading && <TicketsLoading />}
-        {error && <TicketsError tryAgain={initSearch} />}
-        {canShowMore &&
+        {error && !loading && <TicketsError tryAgain={initSearchFx} />}
+
+        {canShowMore && !error && !loading && tickets.length > 0 &&
           <Button onClick={showMoreClickHandler}>
             Показать еще {AMOUNT_TO_SHOW} билетов!
           </Button>

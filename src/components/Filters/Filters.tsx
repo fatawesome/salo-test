@@ -23,7 +23,6 @@ const Filters: React.FC<FiltersProps> = (props) => {
       id={filter.type}
       checked={filter.selected}
       onChange={() => {
-        console.log(`Filter "${filter.type}" clicked`);
         props.onChange(filter.type);
       }}
     >

@@ -8,7 +8,7 @@ export const $searchId = createStore<SearchId>('');
 export const $tickets = createStore<Ticket[]>([]);
 export const $canFetchTickets = createStore<boolean>(true);
 
-export const initSearch = createEffect<void, SearchId, Error>();
+export const initSearchFx = createEffect<void, SearchId, Error>();
 export const fetchTicketsFx = createEffect<SearchId, TicketsResponse, Error>();
 
 export const $fetchIdError = createStore<Error | null>(null);
@@ -17,6 +17,11 @@ export const $fetchError = combine(
   $fetchIdError, $fetchTicketsError,
   (idError, ticketsError) => { return idError || ticketsError; }
 );
+
+export const $loading = combine(
+  initSearchFx.pending, fetchTicketsFx.pending,
+  (initSearch, fetchTickets) => initSearch || fetchTickets
+)
 
 // First filter, then sort, cz filter - O(n), and sort - O(nlogn).
 export const $filteredAndSortedTickets = combine(
@@ -27,7 +32,7 @@ export const $filteredAndSortedTickets = combine(
 );
 
 export const $ticketGetStatus = combine({
-  loading: initSearch.pending || fetchTicketsFx.pending,
+  loading: $loading,
   error: $fetchError,
   tickets: $filteredAndSortedTickets
 });

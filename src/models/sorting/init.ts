@@ -7,6 +7,4 @@ $sortStates.on(applySort, (sorts, type) =>
   }))
 );
 
-applySort.watch((payload) => console.log(payload));
-
 $sort.on($sortStates, (_, sorts) => sorts.find(sort => sort.selected));
