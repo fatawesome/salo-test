@@ -1,6 +1,6 @@
 import {
   $tickets, initSearchFx, fetchTicketsFx,
-  $fetchIdError, $fetchTicketsError, $searchId, $canFetchTickets
+  $fetchIdError, $fetchTicketsError, $searchId, $canFetchTickets, searchInitiated
 } from './index';
 import { Ticket } from '../../types';
 import { getSearchId, getTickets } from '../../api/search';
@@ -8,6 +8,11 @@ import { forward } from 'effector';
 
 initSearchFx.use(getSearchId);
 fetchTicketsFx.use(getTickets);
+
+forward({
+  from: searchInitiated,
+  to: initSearchFx
+})
 
 $searchId.on(
   initSearchFx.done,

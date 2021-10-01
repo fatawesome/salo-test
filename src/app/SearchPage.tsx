@@ -7,7 +7,7 @@ import { Filters as FiltersComponent } from '../components/Filters';
 import { TicketsList as TicketsListComponent } from '../components/TicketsList';
 import { Button as ButtonComponent } from '../components/common/Button';
 
-import { $ticketGetStatus, initSearchFx } from '../models/tickets';
+import { $ticketGetStatus, initSearchFx, searchInitiated } from '../models/tickets';
 import { $filterStates, toggleFilter } from '../models/filter';
 import { $canShowMore, $shownAmount, AMOUNT_TO_SHOW, showMore } from '../models/showMore';
 import { $sortStates, applySort } from '../models/sorting';
@@ -47,10 +47,11 @@ const SearchPage: React.FC<SearchPageProps> = ({ className }) => {
   const showMoreHandler = useEvent(showMore);
   const toggleFilterHandler = useEvent(toggleFilter);
   const applySortHandler = useEvent(applySort);
+  const initSearch = useEvent(searchInitiated)
 
   useEffect(() => {
-    initSearchFx();
-  }, []);
+    initSearch();
+  }, [initSearch]);
 
   const showMoreClickHandler: MouseEventHandler = (e) => {
     e.preventDefault();
