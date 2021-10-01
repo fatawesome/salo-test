@@ -26,7 +26,7 @@ const Checkbox: React.FC<CheckboxProps> =
         onChange={onChange}
       />
       <label htmlFor={id}>
-        <span>
+        <span data-testid="checkbox-box">
           {checked &&
             <img src={require('@/assets/icons/checkmark.svg')} alt="checked" />
           }

@@ -14,7 +14,9 @@ exports[`Checkbox component renders correctly 1`] = `
   <label
     htmlFor="test id"
   >
-    <span>
+    <span
+      data-testid="checkbox-box"
+    >
       <img
         alt="checked"
         src={
