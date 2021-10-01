@@ -1,12 +1,6 @@
 import { createEvent, createStore } from 'effector';
-import { Filter, FilterFn, FilterType, Segment, Ticket } from '../../types';
-
-const hasAmountOfStops = (n: number) => (ticket: Ticket) => {
-  return ticket.segments.every(segmentHasAmountOfStops(n));
-}
-const segmentHasAmountOfStops = (n: number) => (segment: Segment) => {
-  return segment.stops.length === n;
-}
+import { Filter, FilterFn, FilterType, Ticket } from '../../types';
+import { hasAmountOfStops } from './helpers';
 
 export const $filters = createStore<FilterFn[]>([]);
 export const $filtersFn = $filters.map(filters => {

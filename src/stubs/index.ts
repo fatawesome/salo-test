@@ -34,7 +34,6 @@ export const testTickets: Ticket[] = [
         "destination": "HKT",
         "date": "2021-09-30T15:14:00.000Z",
         "stops": [
-          "SHA",
           "DXB"
         ],
         "duration": 1223
