@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { Ticket as TicketType } from '../../types';
 import { Segment } from './Segment';
 import { ContentBlock } from '../common/ContentBlock';
+import { showPrice } from './helpers';
 
 interface TicketCardProps {
   ticket: TicketType;
@@ -36,7 +37,7 @@ const Ticket: React.FC<TicketCardProps> = ({ ticket, className }) => {
   return (
     <div className={className}>
       <Header>
-        <Price>{ticket.price} Р</Price>
+        <Price>{showPrice(ticket.price)}</Price>
         <img src={getCarrierImgURL(ticket.carrier)} alt={ticket.carrier} />
       </Header>
       {ticket.segments.map(segment => <StyledSegment segment={segment} key={segment.date} />)}

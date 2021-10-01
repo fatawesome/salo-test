@@ -25,6 +25,15 @@ export function routeTimeToString({ hours, minutes }: RouteTime): string {
   return `${hours}ч ${minutes}м`;
 }
 
+export function showPrice(price: number): string {
+  let result = ' Р';
+  while (price) {
+    result = ' ' + (price % 1000) + result;
+    price = Math.floor(price / 1000);
+  }
+  return result.trimLeft();
+}
+
 function dateToTimeString(date: Date): string {
   return `${date.getHours()}:${date.getMinutes()}`;
 }
