@@ -12,6 +12,7 @@ describe('Button component', () => {
   const clickHandler = jest.fn();
 
   test('renders correctly', () => {
+    // TODO: сделать враппер над рендерером, чтобы не прокидывать тему каждый раз
     const component = renderer.create(
       <ThemeProvider theme={aviasalesTheme}>
         <Button onClick={clickHandler}>{buttonText}</Button>
