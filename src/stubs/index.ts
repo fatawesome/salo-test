@@ -1,6 +1,6 @@
 import { Ticket } from '../types';
 
-export const tickets: Ticket[] = [
+export const testTickets: Ticket[] = [
   {
     "price": 29224,
     "carrier": "S7",
