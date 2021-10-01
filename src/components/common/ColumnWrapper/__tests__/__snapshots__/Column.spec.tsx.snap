@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Column component renders 1`] = `
+<div
+  className="Column__ColumnWrapper-sc-gvqm9n-0 cIEksv"
+>
+  <div>
+    Row 1
+  </div>
+  <div>
+    Row 2
+  </div>
+  <div>
+    Row 3
+  </div>
+</div>
+`;

@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Checkbox component renders correctly 1`] = `
+<div
+  className="Checkbox__StyledCheckbox-sc-1nynq9x-0 kUavuH"
+>
+  <input
+    checked={true}
+    disabled={false}
+    id="test id"
+    onChange={[MockFunction]}
+    type="checkbox"
+  />
+  <label
+    htmlFor="test id"
+  >
+    <span>
+      <img
+        alt="checked"
+        src={
+          Object {
+            "process": [Function],
+          }
+        }
+      />
+    </span>
+    label
+  </label>
+</div>
+`;
