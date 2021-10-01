@@ -12,7 +12,7 @@ export const $filtersFn = $filters.map(filters => {
 export const toggleFilter = createEvent<FilterType>();
 export const resetFilters = createEvent();
 
-// TODO: refactor. Можно бахнуть красивую фабрику, но мне лень.
+// TODO: refactor. Можно бахнуть красивую фабрику.
 export const $filterStates = createStore<Filter[]>([
   { type: 'Без пересадок', selected: false,
     fn: hasAmountOfStops(0)

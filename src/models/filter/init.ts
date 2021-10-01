@@ -8,10 +8,10 @@ $filterStates
     }))
   );
 
+$filterStates.reset([resetFilters]);
+
 $filters.on(
   $filterStates,
   (_, list) =>
     list.filter(filter => filter.selected).map(filter => filter.fn)
 );
-
-$filters.reset([resetFilters]);

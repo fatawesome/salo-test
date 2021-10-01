@@ -8,7 +8,7 @@ import { TicketsList as TicketsListComponent } from '../components/TicketsList';
 import { Button as ButtonComponent } from '../components/common/Button';
 
 import { $ticketGetStatus, initSearchFx, searchInitiated } from '../models/tickets';
-import { $filterStates, toggleFilter } from '../models/filter';
+import { $filterStates, resetFilters, toggleFilter } from '../models/filter';
 import { $canShowMore, $shownAmount, AMOUNT_TO_SHOW, showMore } from '../models/showMore';
 import { $sortStates, applySort } from '../models/sorting';
 import { TicketsError } from '../components/TicketsError';
