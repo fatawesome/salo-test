@@ -34,7 +34,7 @@ function dateToTimeString(date: Date): string {
 }
 
 function appendZeroes(x: number) {
-  return x > 10 ? x.toString() : `0${x}`;
+  return x >= 10 ? x.toString() : `0${x}`;
 }
 
 function getArrivalDate(segment: Segment): Date {
