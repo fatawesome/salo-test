@@ -1,4 +1,4 @@
-import { $filters, $filterStates, toggleFilter } from './index';
+import { $filters, $filterStates, resetFilters, toggleFilter } from './index';
 
 $filterStates
   .on(toggleFilter, (list, type) =>
@@ -13,3 +13,5 @@ $filters.on(
   (_, list) =>
     list.filter(filter => filter.selected).map(filter => filter.fn)
 );
+
+$filters.reset([resetFilters]);

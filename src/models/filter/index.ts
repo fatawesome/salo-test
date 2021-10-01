@@ -10,6 +10,7 @@ export const $filtersFn = $filters.map(filters => {
 });
 
 export const toggleFilter = createEvent<FilterType>();
+export const resetFilters = createEvent();
 
 // TODO: refactor. Можно бахнуть красивую фабрику, но мне лень.
 export const $filterStates = createStore<Filter[]>([

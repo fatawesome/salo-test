@@ -5,7 +5,7 @@ import { Checkbox } from './Checkbox';
 import { FilterType } from '../../types';
 
 export interface FilterOptions {
-  type: string;
+  type: FilterType;
   selected: boolean;
 }
 

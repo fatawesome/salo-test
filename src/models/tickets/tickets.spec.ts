@@ -1,7 +1,8 @@
-import { allSettled, fork } from 'effector';
-import { $tickets, fetchTicketsFx, initSearchFx, searchInitiated } from '../tickets';
 import { testTickets } from '../../stubs';
-import '../init';
+import { allSettled, fork } from 'effector';
+import { $tickets, fetchTicketsFx, initSearchFx, searchInitiated } from './index';
+
+import './init';
 
 describe('Search logic', () => {
   let initSearchHandler = jest.fn(() => 'FAKE_SEARCH_ID');
@@ -28,9 +29,5 @@ describe('Search logic', () => {
       await allSettled(searchInitiated, { scope });
       expect(scope.getState($tickets)).toEqual(testTickets);
     });
-  });
-
-  describe('Tickets sorting', async () => {
-
   });
 });

@@ -16,7 +16,7 @@ export interface Ticket {
 }
 
 
-export type FilterType = string;
+export type FilterType = 'Без пересадок' | '1 пересадка' | '2 пересадки' | '3 пересадки';
 export type FilterFn = (ticket: Ticket) => boolean;
 
 export interface Filter {
