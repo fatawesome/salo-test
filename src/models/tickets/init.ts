@@ -15,14 +15,14 @@ forward({
 });
 
 forward({
+  from: initSearchFx.doneData,
+  to: $searchId
+})
+
+forward({
   from: $searchId,
   to: fetchTicketsFx
 });
-
-$searchId.on(
-  initSearchFx.doneData,
-  (_, result) => result
-);
 
 const updateTicketsStore = (state: Ticket[], data: Ticket[]) => {
   return state.concat(data);

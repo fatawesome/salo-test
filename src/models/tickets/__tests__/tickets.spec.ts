@@ -1,12 +1,11 @@
 import { allSettled, fork } from 'effector';
-import { $searchId, $tickets, fetchTicketsFx, initSearchFx, searchInitiated } from '../index';
+import { $tickets, fetchTicketsFx, initSearchFx, searchInitiated } from '../index';
 import { testTickets } from '../../../stubs';
-import { SearchId } from '../../../types';
 
 describe('Tickets fetching module', () => {
   test('sets tickets after initiating search', async () => {
     let initSearchHandler = () => 'FAKE_SEARCH_ID';
-    let fetchTicketsHandler = (id: SearchId) => ({
+    let fetchTicketsHandler = () => ({
       tickets: testTickets,
       stop: false
     });
@@ -18,7 +17,6 @@ describe('Tickets fetching module', () => {
     });
 
     await allSettled(searchInitiated, { scope });
-    expect(scope.getState($searchId)).toBe('FAKE_SEARCH_ID');
     expect(scope.getState($tickets)).toEqual(testTickets);
   })
 })
