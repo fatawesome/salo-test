@@ -15,10 +15,6 @@ export const fetchTicketsFx = createEffect<SearchId, TicketsResponse, Error>();
 
 export const $fetchIdError = createStore<Error | null>(null);
 export const $fetchTicketsError = createStore<Error | null>(null);
-export const $fetchError = combine(
-  $fetchIdError, $fetchTicketsError,
-  (idError, ticketsError) => { return idError || ticketsError; }
-);
 
 export const $loading = combine(
   initSearchFx.pending, fetchTicketsFx.pending,
@@ -31,6 +27,11 @@ export const $filteredAndSortedTickets = combine(
   $filtersFn,
   $sortFn,
   (list, filterFn, sortFn) => list.filter(filterFn).sort(sortFn)
+);
+
+export const $fetchError = combine(
+  $fetchIdError, $fetchTicketsError,
+  (idError, ticketsError) => { return idError || ticketsError; }
 );
 
 export const $ticketGetStatus = combine({

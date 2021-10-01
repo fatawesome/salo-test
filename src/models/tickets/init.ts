@@ -12,11 +12,16 @@ fetchTicketsFx.use(getTickets);
 forward({
   from: searchInitiated,
   to: initSearchFx
-})
+});
+
+forward({
+  from: $searchId,
+  to: fetchTicketsFx
+});
 
 $searchId.on(
-  initSearchFx.done,
-  (_, {result}) => result
+  initSearchFx.doneData,
+  (_, result) => result
 );
 
 const updateTicketsStore = (state: Ticket[], data: Ticket[]) => {
@@ -24,17 +29,15 @@ const updateTicketsStore = (state: Ticket[], data: Ticket[]) => {
 }
 
 $tickets.on(
-  fetchTicketsFx.done,
-  (tickets, {result}) => updateTicketsStore(tickets, result.tickets)
+  fetchTicketsFx.doneData,
+  (tickets, result) => updateTicketsStore(tickets, result.tickets)
 );
 
 // TODO: было бы неплохо уметь запрещать делать запросы на уровне этого модуля.
-$canFetchTickets.on(fetchTicketsFx.done, (_, {result}) => !result.stop);
-
-forward({
-  from: $searchId,
-  to: fetchTicketsFx
-});
+$canFetchTickets.on(
+  fetchTicketsFx.doneData,
+  (_, result) => !result.stop
+);
 
 $fetchIdError
   .on(initSearchFx.fail, (_, { error }) => error)
