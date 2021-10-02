@@ -12,7 +12,7 @@ export interface Ticket {
   id?: number | string;
   price: number;
   carrier: string;
-  segments: Segment[] // as it was told, precisely 2 segments are allowed.
+  segments: [Segment, Segment] // as it was told, precisely 2 segments are allowed.
 }
 
 
