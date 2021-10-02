@@ -1,5 +1,6 @@
 import { Ticket } from '../../types';
 
+// Can be defined on environmental level.
 const weights = {
   price: 1,
   stop: 1000,
@@ -22,6 +23,7 @@ function getTicketStopsScore(ticket: Ticket, weight: number): number {
  *
  * На самом деле, много чего бы тут учитывать: пересадки в разных аэропортах, качество авиалиний и тд.
  * Можно сделать веса динамичными (например, чем дольше перелет, тем меньше/больше скор одного часа в полете).
+ * А можно нанять датасаентиста :D
  */
 export function getOptimalityScore(ticket: Ticket): number {
   return ticket.price * weights.price
