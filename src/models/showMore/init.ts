@@ -1,4 +1,4 @@
-import { $canShowMore, $fetchingRequired, $shownAmount, resetShownAmount, showMore } from './';
+import { $fetchingRequired, $shownAmount, resetShownAmount, showMore } from './';
 import { guard } from 'effector';
 import { $searchId, fetchTicketsFx } from '../tickets';
 
