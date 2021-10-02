@@ -1,4 +1,4 @@
-import { $canShowMore, $fetchingRequired, $shownAmount, showMore } from './';
+import { $canShowMore, $fetchingRequired, $shownAmount, resetShownAmount, showMore } from './';
 import { guard } from 'effector';
 import { $searchId, fetchTicketsFx } from '../tickets';
 
@@ -8,6 +8,8 @@ $shownAmount.on(
     return shown + payload;
   }
 );
+
+$shownAmount.reset([resetShownAmount]);
 
 guard({
   clock: showMore,
