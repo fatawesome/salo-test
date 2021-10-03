@@ -18,9 +18,12 @@ const optimal: Sort = {
   selected: false,
   comparator: compareOnOptimality
 };
-const defaultSorts = [priceIncreasing, priceDecreasing, optimal];
+const sorts = [priceIncreasing, priceDecreasing, optimal];
 
-export const $sort = createStore<Sort>(priceIncreasing);
+export const DEFAULT_SORT = priceIncreasing;
+
+export const $sort = createStore<Sort>(DEFAULT_SORT);
 export const $sortFn = $sort.map(sort => sort.comparator);
-export const $sortStates = createStore<Sort[]>(defaultSorts)
+export const $sortStates = createStore<Sort[]>(sorts)
 export const applySort = createEvent<SortType>();
+export const resetSort = createEvent();
