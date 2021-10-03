@@ -38,7 +38,7 @@ const Ticket: React.FC<TicketCardProps> = ({ ticket, className }) => {
     <div className={className}>
       <Header>
         <Price>{showPrice(ticket.price)} Р</Price>
-        <img src={getCarrierImgURL(ticket.carrier)} alt={ticket.carrier} />
+        <img width={110} height={36} src={getCarrierImgURL(ticket.carrier)} alt={ticket.carrier} />
       </Header>
       {ticket.segments.map(segment => <StyledSegment segment={segment} key={segment.date} />)}
     </div>
