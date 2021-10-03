@@ -8,12 +8,6 @@ interface TicketsListProps {
   className?: string
 }
 
-// TODO: Хардкод - плохо.
-// В этом случае он приводит к необходимости хендлить лишние 20 пикселей на уровне консьюмера,
-// что в целом не очень хорошо, но так было значительно быстрее,
-// чем задавать динамическую высоту элемента списка в <List> из react-virtualized.
-const TICKET_HEIGHT = 204;
-
 const Ticket = styled(TicketComponent)`
   :not(:last-child) {
     margin-bottom: 20px;
@@ -32,4 +26,4 @@ const StyledTicketsList = styled(TicketsList)`
   width: 100%;
 `
 
-export default StyledTicketsList;
+export default React.memo(StyledTicketsList);

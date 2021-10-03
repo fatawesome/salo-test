@@ -54,4 +54,4 @@ const StyledTicket = styled(Ticket)`
   padding: 20px;
 `
 
-export default ContentBlock(StyledTicket);
+export default React.memo(ContentBlock(StyledTicket));
