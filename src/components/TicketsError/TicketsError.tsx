@@ -13,9 +13,7 @@ const Button = styled(ButtonComponent)`
 `;
 
 const Wrapper = styled(ColumnWrapper)`
-  margin-bottom: 20px; // TODO: вынести наружу. Писать внешние спейсинги в компоненте - плохо.
   font-size: 16px;
-  
 `;
 
 const TicketsError: React.FC<TicketsErrorProps> = ({ className, tryAgain }) => {

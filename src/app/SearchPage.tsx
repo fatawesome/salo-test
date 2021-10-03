@@ -2,13 +2,13 @@ import React, { MouseEventHandler, useEffect } from 'react';
 import styled from 'styled-components';
 import { useEvent, useStore } from 'effector-react';
 
-import { Sorting } from '../components/Sorting';
+import { TicketsList } from '../components/TicketsList';
+import { Sorting as SortingComponent } from '../components/Sorting';
 import { Filters as FiltersComponent } from '../components/Filters';
-import { TicketsList as TicketsListComponent } from '../components/TicketsList';
 import { Button as ButtonComponent } from '../components/common/Button';
 
 import { $ticketGetStatus, initSearchFx, searchInitiated } from '../models/tickets';
-import { $filterStates, resetFilters, toggleFilter } from '../models/filter';
+import { $filterStates, toggleFilter } from '../models/filter';
 import { $canShowMore, $shownAmount, AMOUNT_TO_SHOW, showMore } from '../models/showMore';
 import { $sortStates, applySort } from '../models/sorting';
 import { TicketsError } from '../components/TicketsError';
@@ -23,16 +23,17 @@ const Column = styled(ColumnWrapper)`
   max-width: 502px;
 `;
 
+const Sorting = styled(SortingComponent)`
+  margin-bottom: 20px;
+`
+
 const Filters = styled(FiltersComponent)`
   // TODO: nit - много спейсингов с таким значением, было бы неплохо в тему вытащить.
   margin-right: 20px;
 `;
 
-const TicketsList = styled(TicketsListComponent)`
-  margin-top: 20px;
-`;
-
 const Button = styled(ButtonComponent)`
+  margin-top: 20px;
   width: 100%;
 `;
 

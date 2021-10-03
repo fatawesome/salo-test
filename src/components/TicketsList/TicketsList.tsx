@@ -2,7 +2,6 @@ import React from 'react';
 import { Ticket as TicketT } from '../../types';
 import { Ticket as TicketComponent } from '../Ticket';
 import styled from 'styled-components';
-import { AutoSizer, ListRowProps, List } from 'react-virtualized';
 
 interface TicketsListProps {
   tickets: TicketT[];
@@ -22,29 +21,14 @@ const Ticket = styled(TicketComponent)`
 `;
 
 const TicketsList: React.FunctionComponent<TicketsListProps> = ({ tickets, className }) => {
-  function rowRenderer({key, index, style}: ListRowProps) {
-    return <Ticket ticket={tickets[index]} key={key} style={style} />
-  }
-
   return (
     <div className={className}>
-      <AutoSizer>
-        {({height, width}) => (
-          <List
-            height={height}
-            rowCount={tickets.length}
-            rowHeight={TICKET_HEIGHT}
-            rowRenderer={rowRenderer}
-            width={width}
-          />
-        )}
-      </AutoSizer>
+      {tickets.map(ticket => <Ticket ticket={ticket} key={ticket.id} />)}
     </div>
   );
 };
 
 const StyledTicketsList = styled(TicketsList)`
-  height: ${props => props.tickets.length * TICKET_HEIGHT}px;
   width: 100%;
 `
 
