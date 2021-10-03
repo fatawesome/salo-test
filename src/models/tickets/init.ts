@@ -1,6 +1,6 @@
 import {
   $tickets, initSearchFx, fetchTicketsFx,
-  $fetchIdError, $fetchTicketsError, $searchId, $canFetchTickets, searchInitiated
+  $fetchIdError, $fetchTicketsError, $searchId, $canFetchTickets, searchInitiated, resetTickets
 } from './index';
 import { Ticket } from '../../types';
 import { getSearchId, getTickets } from '../../api/search';
@@ -32,6 +32,7 @@ $tickets.on(
   fetchTicketsFx.doneData,
   (tickets, result) => updateTicketsStore(tickets, result.tickets)
 );
+$tickets.reset([resetTickets]);
 
 // TODO: было бы неплохо уметь запрещать делать запросы на уровне этого модуля.
 $canFetchTickets.on(

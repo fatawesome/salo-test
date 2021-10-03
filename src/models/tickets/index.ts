@@ -9,6 +9,7 @@ export const $tickets = createStore<Ticket[]>([]);
 export const $canFetchTickets = createStore<boolean>(true);
 
 export const searchInitiated = createEvent();
+export const resetTickets = createEvent();
 
 export const initSearchFx = createEffect<void, SearchId, Error>();
 export const fetchTicketsFx = createEffect<SearchId, TicketsResponse, Error>();
