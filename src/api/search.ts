@@ -1,7 +1,7 @@
 import { SearchId, Ticket } from '../types';
 import { nanoid } from 'nanoid';
 
-const BASE_URL = 'https://front-test.beta.aviasales.ru';
+const BASE_URL = process.env.API_URL;
 
 export async function getSearchId(): Promise<SearchId> {
   const response = await fetch(`${BASE_URL}/search`, { method: 'GET' });

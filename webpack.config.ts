@@ -5,6 +5,7 @@ import HtmlWebpackPlugin from 'html-webpack-plugin';
 import ESLintWebpackPlugin from 'eslint-webpack-plugin';
 import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
 import { CleanWebpackPlugin } from 'clean-webpack-plugin';
+import Dotenv from 'dotenv-webpack';
 
 interface Configuration extends WebpackConfiguration {
   devServer?: WebpackDevServerConfiguration
@@ -80,6 +81,7 @@ const config: Configuration = {
     }),
     new CleanWebpackPlugin(),
     new HotModuleReplacementPlugin(),
+    new Dotenv()
   ]
 }
 
