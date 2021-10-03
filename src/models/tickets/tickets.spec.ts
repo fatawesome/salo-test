@@ -1,22 +1,9 @@
-import { testTickets } from '../../stubs';
-import { allSettled, fork } from 'effector';
-import { $fetchError, $searchId, $tickets, fetchTicketsFx, initSearchFx, resetTickets, searchInitiated } from './index';
-import { Ticket } from '../../types';
+import { FAKE_SEARCH_ID, testTickets } from '../../stubs';
+import { allSettled } from 'effector';
+import { $fetchError, $searchId, $tickets, resetTickets, searchInitiated } from './index';
 
 import './init';
-
-function forkWithSearchHandlers(
-  initSearchHandler: jest.Mock<string, []>,
-  fetchTicketsHandler: jest.Mock<{ tickets: Ticket[]; stop: boolean; }, []>
-) {
-  return fork({
-    handlers: new Map()
-      .set(initSearchFx, initSearchHandler)
-      .set(fetchTicketsFx, fetchTicketsHandler)
-  })
-}
-
-const FAKE_SEARCH_ID = 'FAKE_SEARCH_ID';
+import { forkWithSearchHandlers } from '../../tests/helpers';
 
 describe('Tickets module', () => {
   afterEach(() => {
