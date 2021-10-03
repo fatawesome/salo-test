@@ -14,6 +14,10 @@ const Button = styled(ButtonComponent)`
 
 const Wrapper = styled(ColumnWrapper)`
   font-size: 16px;
+
+  h4 {
+    margin: 0 0 20px;
+  }
 `;
 
 const TicketsError: React.FC<TicketsErrorProps> = ({ className, tryAgain }) => {
